@@ -1,6 +1,6 @@
 class DonationsController < ApplicationController
   def index
-    @donations = Donation.all
+    @donations = Donation.includes(:donor).all
   end
 
   def new

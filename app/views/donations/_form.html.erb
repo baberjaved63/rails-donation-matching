@@ -1,6 +1,8 @@
 <%= form_for @donation do |f| %>
   <div class="form-group">
-    <% f.label :amount %>
-    <% f.integer :amount %>
+    <%= f.label :amount %>
+    <%= f.number_field :amount, class: "form-control" %>
   </div>
+
+  <%= f.submit "Donate" %>
 <% end %>

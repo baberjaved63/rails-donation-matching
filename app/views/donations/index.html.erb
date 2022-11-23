@@ -1,0 +1,20 @@
+<%= link_to "Make Donation", new_donation_path %>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Date</th>
+      <th scope="col">Donor Email</th>
+      <th scope="col">Amount ($)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @donations.each do |donation| %>
+      <tr>
+        <%= content_tag :td, donation.created_at.strftime("%b %d, %Y") %>
+        <%= content_tag :td, donation.donor.email %>
+        <%= content_tag :td, donation.amount %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
