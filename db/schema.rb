@@ -25,7 +25,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_22_104153) do
   create_table "matches", force: :cascade do |t|
     t.integer "donor_id", null: false
     t.integer "match_type"
-    t.integer "status"
+    t.integer "status", default: 0
     t.date "end_date"
     t.decimal "pledge_limit"
     t.decimal "pledge_fulfilled", default: "0.0"

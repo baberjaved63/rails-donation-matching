@@ -10,9 +10,10 @@ class DonationsController < ApplicationController
   def create
     @donation = current_user.donations.build(donation_params)
 
-    redirect_to donations_path and return if @donation.save
+    render :new and return unless @donation.save
 
-    render :new
+    MatchDonationJob.new.perform(@donation.id)
+    redirect_to donations_path
   end
 
   private

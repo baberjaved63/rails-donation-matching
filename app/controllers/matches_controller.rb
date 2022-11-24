@@ -1,6 +1,6 @@
 class MatchesController < ApplicationController
   def index
-    @matches = Match.includes(:donor).all
+    @matches = Match.includes(:donor)
   end
 
   def new
