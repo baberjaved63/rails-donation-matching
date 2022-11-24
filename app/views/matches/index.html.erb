@@ -1,0 +1,26 @@
+<%= link_to "Make Pledge", new_match_path %>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Email</th>
+      <th scope="col">For each</th>
+      <th scope="col">Pledge Amount ($)</th>
+      <th scope="col">Pledge Limit ($)</th>
+      <th scope="col">Pledge Fulfilled ($)</th>
+      <th scope="col">End Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @matches.each do |match| %>
+      <tr>
+        <%= content_tag :td, match.donor.email %>
+        <%= content_tag :td, match.match_type %>
+        <%= content_tag :td, match.pledge_amount %>
+        <%= content_tag :td, match.pledge_limit %>
+        <%= content_tag :td, match.pledge_fulfilled %>
+        <%= content_tag :td, match.end_date.strftime("%b %d, %Y") %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
