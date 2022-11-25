@@ -1,23 +1,25 @@
-<%= form_for @match do |f| %>
-  <div class="form-group">
-    <%= f.label :pledge_amount %>
-    <%= f.number_field :pledge_amount, min: 0, class: "form-control" %>
-  </div>
+<div class="w-50">
+  <%= form_for @match do |f| %>
+    <div class="form-group">
+      <%= f.label :pledge_amount %>
+      <%= f.number_field :pledge_amount, min: 0, class: "form-control" %>
+    </div>
 
-  <div class="form-group">
-    <%= f.label :match_type %>
-    <%= f.select :match_type, Match.match_types.keys, class: "form-control" %>
-  </div>
+    <div class="form-group">
+      <%= f.label :match_type %>
+      <%= f.select :match_type, Match.match_types.keys, {}, class: "form-control" %>
+    </div>
 
-  <div class="form-group">
-    <%= f.label :pledge_limit %>
-    <%= f.number_field :pledge_limit, min: 0, class: "form-control" %>
-  </div>
+    <div class="form-group">
+      <%= f.label :pledge_limit %>
+      <%= f.number_field :pledge_limit, min: 0, class: "form-control" %>
+    </div>
 
-  <div class="form-group">
-    <%= f.label :end_date %>
-    <%= f.date_field :end_date, class: "form-control" %>
-  </div>
+    <div class="form-group">
+      <%= f.label :end_date %>
+      <%= f.date_field :end_date, min: Date.today, class: "form-control" %>
+    </div>
 
-  <%= f.submit %>
-<% end %>
+    <%= f.submit %>
+  <% end %>
+</div>
