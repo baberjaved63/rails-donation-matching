@@ -10,9 +10,17 @@ class MatchFulfilmentService
       next if donation.donor_id.eql? match.donor_id
       match.closed! and next if match.expired?
 
-      match.pledge_fulfilled += valid_pledge_amount(match)
-      match.status = :closed if match.pledge_completed?
-      match.save
+      valid_pledge_amount = valid_pledge_amount(match)
+
+      # charge = Stripe::Charge.create(amount: valid_pledge_amount)
+      # next unless charge.success?
+
+      Match.transaction do
+        match.donations_matches.create(amount: valid_pledge_amount, donation: donation)
+        match.pledge_fulfilled += valid_pledge_amount
+        match.status = :closed if match.pledge_completed?
+        match.save
+      end
     end
   end
 

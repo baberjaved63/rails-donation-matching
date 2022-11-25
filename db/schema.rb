@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_22_104153) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_25_070936) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -20,6 +20,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_22_104153) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["donor_id"], name: "index_donations_on_donor_id"
+  end
+
+  create_table "donations_matches", force: :cascade do |t|
+    t.bigint "donation_id", null: false
+    t.bigint "match_id", null: false
+    t.decimal "amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["donation_id"], name: "index_donations_matches_on_donation_id"
+    t.index ["match_id"], name: "index_donations_matches_on_match_id"
   end
 
   create_table "matches", force: :cascade do |t|
@@ -43,4 +53,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_22_104153) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "donations_matches", "donations"
+  add_foreign_key "donations_matches", "matches"
 end
