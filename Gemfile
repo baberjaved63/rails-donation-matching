@@ -33,7 +33,9 @@ gem "redis", "~> 4.0"
 gem "devise"
 gem "letter_opener"
 
-gem "byebug"
+gem "rspec-rails"
+gem "faker"
+gem "factory_bot_rails"
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
